@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrusel Mejorado</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Script Flowbite para funcionalidad carrusel -->
+  <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.js"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+  <div id="controls-carousel" class="relative w-full max-w-4xl rounded-lg shadow-lg" data-carousel="static">
+    <!-- Carousel wrapper -->
+    <div class="relative h-64 md:h-96 overflow-hidden rounded-lg">
+      
+      <!-- Items -->
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+        <img
+          src="https://i.postimg.cc/ZRCH70gb/pexels-pixabay-159711.jpg"
+          alt="Imagen 1"
+          class="w-full h-full object-cover rounded-lg"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="duration-700 ease-in-out" data-carousel-item="active">
+        <img
+          src="https://i.postimg.cc/sfL9XVLS/pexels-olia-danilevich-5088008.jpg"
+          alt="Imagen 2"
+          class="w-full h-full object-cover rounded-lg"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+        <img
+          src="https://i.postimg.cc/LXdb8DK1/pexels-pixabay-301943.jpg"
+          alt="Imagen 3"
+          class="w-full h-full object-cover rounded-lg"
+          loading="lazy"
+        />
+      </div>
+
+    </div>
+
+    <!-- Controls -->
+    <button
+      type="button"
+      class="absolute top-1/2 left-3 z-30 -translate-y-1/2 flex items-center justify-center rounded-full bg-black bg-opacity-40 p-2 text-white hover:bg-opacity-70 focus:outline-none focus:ring-4 focus:ring-white"
+      data-carousel-prev
+      aria-label="Previous Slide"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        viewBox="0 0 24 24"
+      >
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+    </button>
+
+    <button
+      type="button"
+      class="absolute top-1/2 right-3 z-30 -translate-y-1/2 flex items-center justify-center rounded-full bg-black bg-opacity-40 p-2 text-white hover:bg-opacity-70 focus:outline-none focus:ring-4 focus:ring-white"
+      data-carousel-next
+      aria-label="Next Slide"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        viewBox="0 0 24 24"
+      >
+        <path d="M9 6l6 6-6 6" />
+      </svg>
+    </button>
+  </div>
+
+</body>
+</html>

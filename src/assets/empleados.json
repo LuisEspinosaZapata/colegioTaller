@@ -1,0 +1,12 @@
+[
+  { "id": 1, "nombre": "Juan Pérez", "city": "Quito" },
+  { "id": 2, "nombre": "Ana López", "city": "Guayaquil" },
+  { "id": 3, "nombre": "Carlos Torres", "city": "Cuenca" },
+  { "id": 4, "nombre": "María García", "city": "Manta" },
+  { "id": 5, "nombre": "Luis Fernández", "city": "Machala" },
+  { "id": 6, "nombre": "Sofía Martínez", "city": "Ambato" },
+  { "id": 7, "nombre": "Diego Ramírez", "city": "Loja" },
+  { "id": 8, "nombre": "Isabel Castro", "city": "Ibarra" },
+  { "id": 9, "nombre": "Andrés Jiménez", "city": "Portoviejo" },
+  { "id": 10, "nombre": "Lucía Morales", "city": "Esmeraldas" }
+]

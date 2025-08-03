@@ -1,0 +1,122 @@
+<form (ngSubmit)="guardar(formulario)" #formulario="ngForm" class="formulario max-w-md mx-auto bg-white p-6 rounded-xl shadow-md space-y-4">
+  <h2 class="text-2xl font-bold text-center mb-4">Registro de Empleados</h2>
+
+  <input
+    type="number"
+    placeholder="Cédula"
+    name="cedula"
+    [(ngModel)]="cedula"
+    required
+    class="w-full border border-gray-300 p-2 rounded"
+  />
+
+  <input
+    type="text"
+    placeholder="Nombre"
+    name="nombre"
+    [(ngModel)]="nombre"
+    required
+    class="w-full border border-gray-300 p-2 rounded"
+  />
+
+  <input
+    type="text"
+    placeholder="Apellido"
+    name="apellido"
+    [(ngModel)]="apellido"
+    required
+    class="w-full border border-gray-300 p-2 rounded"
+  />
+
+  <input
+    type="email"
+    placeholder="Email"
+    name="email"
+    [(ngModel)]="email"
+    required
+    class="w-full border border-gray-300 p-2 rounded"
+  />
+
+  <input
+    type="text"
+    placeholder="Teléfono"
+    name="telefono"
+    [(ngModel)]="telefono"
+    required
+    class="w-full border border-gray-300 p-2 rounded"
+  />
+
+  <select
+    name="genero"
+    [(ngModel)]="genero"
+    required
+    class="w-full border border-gray-300 p-2 rounded bg-white"
+  >
+    <option value="" disabled selected>Seleccione género</option>
+    <option value="masculino">Masculino</option>
+    <option value="femenino">Femenino</option>
+  </select>
+
+  <div class="flex justify-between mt-4">
+    <button
+      type="submit"
+      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+    >
+      {{ id ? 'Actualizar' : 'Enviar' }}
+    </button>
+
+    <button
+      type="button"
+      (click)="limpiarFormulario(formulario)"
+      class="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400 transition"
+    >
+      Limpiar
+    </button>
+  </div>
+</form>
+
+<table class="w-full text-sm text-left text-gray-600 dark:text-gray-300 mt-6 shadow-md rounded-lg overflow-hidden">
+  <thead class="bg-gray-100 dark:bg-gray-800">
+    <tr>
+      <th class="px-6 py-3 uppercase font-semibold text-gray-700 dark:text-gray-300">Cédula</th>
+      <th class="px-6 py-3 uppercase font-semibold text-gray-700 dark:text-gray-300">Nombre</th>
+      <th class="px-6 py-3 uppercase font-semibold text-gray-700 dark:text-gray-300">Apellido</th>
+      <th class="px-6 py-3 uppercase font-semibold text-gray-700 dark:text-gray-300">Email</th>
+      <th class="px-6 py-3 uppercase font-semibold text-gray-700 dark:text-gray-300">Teléfono</th>
+      <th class="px-6 py-3 uppercase font-semibold text-gray-700 dark:text-gray-300">Género</th>
+      <th class="px-6 py-3 uppercase font-semibold text-gray-700 dark:text-gray-300">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let usu of usuarios"
+      class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition"
+    >
+      <td class="px-6 py-4 whitespace-nowrap">{{ usu.cedula }}</td>
+      <td class="px-6 py-4 whitespace-nowrap">{{ usu.nombre }}</td>
+      <td class="px-6 py-4 whitespace-nowrap">{{ usu.apellido }}</td>
+      <td class="px-6 py-4 whitespace-nowrap">{{ usu.email }}</td>
+      <td class="px-6 py-4 whitespace-nowrap">{{ usu.telefono }}</td>
+      <td class="px-6 py-4 whitespace-nowrap capitalize">{{ usu.genero }}</td>
+      <td class="px-6 py-4 whitespace-nowrap flex gap-2">
+        <button
+          (click)="editarUsuario(usu)"
+          class="px-3 py-1 rounded bg-yellow-400 text-white hover:bg-yellow-500 transition"
+          aria-label="Editar usuario"
+        >
+          Editar
+        </button>
+        <button
+          (click)="eliminarUsuario(usu.id)"
+          class="px-3 py-1 rounded bg-red-500 text-white hover:bg-red-600 transition"
+          aria-label="Eliminar usuario"
+        >
+          Eliminar
+        </button>
+      </td>
+    </tr>
+    <tr *ngIf="usuarios.length === 0" class="bg-white dark:bg-gray-900">
+      <td colspan="7" class="text-center py-4 text-gray-500 dark:text-gray-400 italic">No hay usuarios registrados.</td>
+    </tr>
+  </tbody>
+</table>

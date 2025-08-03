@@ -1,0 +1,7 @@
+.formulario input, .formulario select {
+  margin-bottom: 10px;
+}
+.formulario input:invalid.ng-touched,
+.formulario select:invalid.ng-touched {
+  border-color: red;
+}
