@@ -7,27 +7,65 @@ import { Observable } from 'rxjs';
 })
 export class FirebaseService {
 
-  private API_FIRE = "https://productos-372f5-default-rtdb.firebaseio.com/usuarios";
+  private API_FIRE_USUARIOS = "https://productos-372f5-default-rtdb.firebaseio.com/usuarios";
+  private API_FIRE_PRODUCTOS = "https://productos-372f5-default-rtdb.firebaseio.com/productos";
+  private API_FIRE_FACTURAS = "https://productos-372f5-default-rtdb.firebaseio.com/facturas";
 
   constructor(private http: HttpClient) { }
 
-  // Crear nuevo usuario
+  // ------------------- CRUD para USUARIOS -------------------
+
   postUsuario(usuario: any): Observable<any> {
-    return this.http.post(`${this.API_FIRE}.json`, usuario);
+    return this.http.post(`${this.API_FIRE_USUARIOS}.json`, usuario);
   }
 
-  // Obtener todos los usuarios
+
   getUsuarios(): Observable<any> {
-    return this.http.get(`${this.API_FIRE}.json`);
+    return this.http.get(`${this.API_FIRE_USUARIOS}.json`);
   }
 
-  // Actualizar usuario (patch)
+
   putUsuario(id: string, usuario: any): Observable<any> {
-    return this.http.patch(`${this.API_FIRE}/${id}.json`, usuario);
+    return this.http.patch(`${this.API_FIRE_USUARIOS}/${id}.json`, usuario);
   }
 
-  // Eliminar usuario
+
   deleteUsuario(id: string): Observable<any> {
-    return this.http.delete(`${this.API_FIRE}/${id}.json`);
+    return this.http.delete(`${this.API_FIRE_USUARIOS}/${id}.json`);
   }
+
+
+  // ------------------- CRUD para PRODUCTOS -------------------
+
+
+postProducto(producto: any): Observable<any> {
+  return this.http.post(`${this.API_FIRE_PRODUCTOS}.json`, producto);
+}
+
+
+getProductos(): Observable<any> {
+  return this.http.get(`${this.API_FIRE_PRODUCTOS}.json`);
+}
+
+
+putProducto(id: string, producto: any): Observable<any> {
+  return this.http.patch(`${this.API_FIRE_PRODUCTOS}/${id}.json`, producto);
+}
+
+
+deleteProducto(id: string): Observable<any> {
+  return this.http.delete(`${this.API_FIRE_PRODUCTOS}/${id}.json`);
+}
+
+  // ------------------- Crear Factura -------------------
+postFactura(factura: any): Observable<any> {
+  return this.http.post(`${this.API_FIRE_FACTURAS}.json`, factura);
+}
+
+
+getFacturas(): Observable<any> {
+  return this.http.get(`${this.API_FIRE_FACTURAS}.json`);
+}
+
+
 }

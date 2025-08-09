@@ -1,13 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.css'
+  styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
+  usuarioLogueado = false;
 
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    this.authService.usuario$.subscribe(usuario => {
+      this.usuarioLogueado = !!usuario;
+    });
+  }
 }
+

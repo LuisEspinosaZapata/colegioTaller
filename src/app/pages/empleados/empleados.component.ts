@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './empleados.component.html',
-  styleUrls: ['./empleados.component.css']  // <-- corregido a plural
+  styleUrls: ['./empleados.component.css']
 })
 export class EmpleadosComponent implements OnInit {
   id: string | null = null;
@@ -18,6 +18,7 @@ export class EmpleadosComponent implements OnInit {
   email: any = '';
   telefono: any = '';
   genero: any = '';
+  contrasena: string = '';
 
   usuarios: any[] = [];
   mensaje: string = '';
@@ -50,7 +51,8 @@ export class EmpleadosComponent implements OnInit {
       apellido: this.apellido,
       email: this.email,
       telefono: this.telefono,
-      genero: this.genero
+      genero: this.genero,
+      contrasena: this.contrasena
     };
 
     if (this.id) {
@@ -82,6 +84,7 @@ export class EmpleadosComponent implements OnInit {
     this.email = usuario.email;
     this.telefono = usuario.telefono;
     this.genero = usuario.genero;
+    this.contrasena = usuario.contrasena || '';
   }
 
   eliminarUsuario(id: string) {
@@ -98,6 +101,7 @@ export class EmpleadosComponent implements OnInit {
 
   limpiarFormulario(formulario: any) {
     this.id = null;
+    this.contrasena = '';
     formulario.resetForm();
   }
 }

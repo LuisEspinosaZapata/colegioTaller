@@ -1,0 +1,74 @@
+<h2 class="title">Crear Factura</h2>
+
+<div class="form-group">
+  <label for="producto">Producto:</label>
+  <select id="producto" [(ngModel)]="productoSeleccionadoId" class="input-select">
+    <option value="">-- Seleccione un producto --</option>
+    <option *ngFor="let producto of productos" [value]="producto.id">
+      {{ producto.nombre }} - ${{ producto.precio }} - 
+      <span *ngIf="producto.tieneIva; else noIva">Con IVA</span>
+      <ng-template #noIva>Sin IVA</ng-template>
+    </option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label for="cantidad">Cantidad:</label>
+  <input
+    type="number"
+    id="cantidad"
+    min="1"
+    [(ngModel)]="cantidadSeleccionada"
+    class="input-number"
+  />
+</div>
+
+<button class="btn btn-primary" (click)="agregarItem()">Agregar Producto</button>
+
+<hr class="divider" />
+
+<h3 class="subtitle">Detalle de la Factura</h3>
+
+<table class="table-factura">
+  <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Subtotal</th>
+      <th>IVA</th>
+      <th>Total</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of itemsFactura; let i = index">
+      <td>{{ item.producto.nombre }}</td>
+      <td>{{ item.cantidad }}</td>
+      <td>${{ item.subtotal | number: '1.2-2' }}</td>
+      <td>
+        <span
+          [class.iva-true]="item.iva > 0"
+          [class.iva-false]="item.iva === 0"
+          >${{ item.iva | number: '1.2-2' }}</span
+        >
+      </td>
+      <td>${{ item.total | number: '1.2-2' }}</td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="eliminarItem(i)">Eliminar</button>
+      </td>
+    </tr>
+    <tr *ngIf="itemsFactura.length === 0">
+      <td colspan="6" class="empty">No hay productos agregados.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr class="divider" />
+
+<div class="totales">
+  <p><strong>Subtotal:</strong> ${{ subtotalGeneral | number: '1.2-2' }}</p>
+  <p><strong>IVA:</strong> ${{ ivaGeneral | number: '1.2-2' }}</p>
+  <p class="total"><strong>Total: ${{ totalGeneral | number: '1.2-2' }}</strong></p>
+</div>
+
+<button class="btn btn-success btn-lg" (click)="guardarFactura()">Guardar Factura</button>

@@ -57,6 +57,18 @@
     <option value="femenino">Femenino</option>
   </select>
 
+  <!-- Campo Contraseña -->
+  <input
+    type="password"
+    placeholder="Contraseña"
+    name="contrasena"
+    [(ngModel)]="contrasena"
+    required
+    minlength="6"
+    class="w-full border border-gray-300 p-2 rounded"
+    aria-label="Contraseña"
+  />
+
   <div class="flex justify-between mt-4">
     <button
       type="submit"

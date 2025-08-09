@@ -1,0 +1,53 @@
+<h2>Gestión de Productos</h2>
+
+<div class="form-container">
+  <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" type="text" placeholder="Nombre del producto" [(ngModel)]="nuevoProducto.nombre" />
+  </div>
+
+  <div class="form-group">
+    <label for="descripcion">Descripción</label>
+    <input id="descripcion" type="text" placeholder="Descripción" [(ngModel)]="nuevoProducto.descripcion" />
+  </div>
+
+  <div class="form-group">
+    <label for="precio">Precio ($)</label>
+    <input id="precio" type="number" min="0" placeholder="Precio" [(ngModel)]="nuevoProducto.precio" />
+  </div>
+
+<div class="form-group">
+  <label for="tieneIva">¿Tiene IVA?</label>
+  <select id="tieneIva" [(ngModel)]="nuevoProducto.tieneIva">
+    <option [ngValue]="true">Sí</option>
+    <option [ngValue]="false">No</option>
+  </select>
+</div>
+
+  <div class="btn-group">
+    <button *ngIf="!editandoProductoId" (click)="agregarProducto()">Agregar Producto</button>
+    <button *ngIf="editandoProductoId" (click)="actualizarProducto()">Actualizar Producto</button>
+    <button *ngIf="editandoProductoId" (click)="cancelarEdicion()">Cancelar</button>
+  </div>
+</div>
+
+<hr />
+
+<ul class="productos-list">
+  <li *ngFor="let producto of productos" class="producto-item">
+    <div class="producto-info">
+      <h3>{{ producto.nombre }}</h3>
+      <p>{{ producto.descripcion }}</p>
+      <p class="precio">${{ producto.precio }}</p>
+      <p>
+        <strong>IVA:  </strong>
+        <span *ngIf="producto.tieneIva; else noIva" class="iva-true">Si</span>
+        <ng-template #noIva><span class="iva-false">No</span></ng-template>
+      </p>
+    </div>
+    <div class="producto-acciones">
+      <button (click)="editarProducto(producto)">Editar</button>
+      <button (click)="eliminarProducto(producto.id)">Eliminar</button>
+    </div>
+  </li>
+</ul>

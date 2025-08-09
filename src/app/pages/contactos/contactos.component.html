@@ -1,0 +1,65 @@
+<div class="container">
+  <h1>📞 Contactos — Colegio</h1>
+
+  <div class="card">
+    <form #f="ngForm" (ngSubmit)="submit(f)">
+      <div class="row">
+        <input name="nombre" [(ngModel)]="model.nombre" required placeholder="Nombre *" />
+        <input name="apellido" [(ngModel)]="model.apellido" placeholder="Apellido" />
+      </div>
+
+      <div class="row">
+        <input name="email" [(ngModel)]="model.email" required email placeholder="Email *" />
+        <input name="telefono" [(ngModel)]="model.telefono" placeholder="Teléfono" />
+      </div>
+
+      <div class="row">
+        <select name="grado" [(ngModel)]="model.grado">
+          <option value="">Seleccionar grado</option>
+          <option value="Inicial">Inicial</option>
+          <option value="Primaria">Primaria</option>
+          <option value="Secundaria">Secundaria</option>
+        </select>
+        <input name="mensaje" [(ngModel)]="model.mensaje" placeholder="Mensaje" />
+      </div>
+
+      <div class="actions">
+        <button type="submit" [disabled]="f.invalid">{{ editMode ? 'Actualizar' : 'Enviar' }}</button>
+        <button type="button" (click)="cancelEdit()">Limpiar</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="search-row">
+    <input [(ngModel)]="search" placeholder="🔍 Buscar contactos..." />
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Grado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of filtered()">
+          <td>{{ c.nombre }} {{ c.apellido }}</td>
+          <td>{{ c.email }}</td>
+          <td>{{ c.telefono }}</td>
+          <td>{{ c.grado }}</td>
+          <td>
+            <button class="edit" (click)="edit(c)">✏️</button>
+            <button class="delete" (click)="remove(c.id)">🗑️</button>
+          </td>
+        </tr>
+        <tr *ngIf="filtered().length === 0">
+          <td colspan="5" class="empty">No hay contactos</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

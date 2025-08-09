@@ -1,0 +1,78 @@
+.nosotros {
+  background-color: #f9fafb;
+  padding: 3rem 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #374151;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
+
+.description {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.125rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.content-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-top: 3rem;
+  justify-content: center;
+}
+
+.text-section, .map-section {
+  flex: 1 1 450px;
+  min-width: 300px;
+}
+
+.image {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
+}
+
+.text-section p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.subtitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #111827;
+}
+
+.map-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content-grid {
+    flex-direction: column;
+  }
+
+  .text-section, .map-section {
+    min-width: 100%;
+  }
+}
