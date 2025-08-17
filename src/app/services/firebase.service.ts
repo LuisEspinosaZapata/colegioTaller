@@ -7,65 +7,60 @@ import { Observable } from 'rxjs';
 })
 export class FirebaseService {
 
-  private API_FIRE_USUARIOS = "https://productos-372f5-default-rtdb.firebaseio.com/usuarios";
-  private API_FIRE_PRODUCTOS = "https://productos-372f5-default-rtdb.firebaseio.com/productos";
-  private API_FIRE_FACTURAS = "https://productos-372f5-default-rtdb.firebaseio.com/facturas";
-
+  private API_USUARIOS = "http://localhost:9090/usuarios";
+  private API_PRODUCTOS = "http://localhost:9090/productos";
+  private API_FACTURAS  = "http://localhost:9090/factura";
+  
   constructor(private http: HttpClient) { }
 
-  // ------------------- CRUD para USUARIOS -------------------
-
+  // ------------------- CRUD USUARIOS -------------------
   postUsuario(usuario: any): Observable<any> {
-    return this.http.post(`${this.API_FIRE_USUARIOS}.json`, usuario);
+    return this.http.post(this.API_USUARIOS, usuario);
   }
-
 
   getUsuarios(): Observable<any> {
-    return this.http.get(`${this.API_FIRE_USUARIOS}.json`);
+    return this.http.get(this.API_USUARIOS);
   }
 
-
-  putUsuario(id: string, usuario: any): Observable<any> {
-    return this.http.patch(`${this.API_FIRE_USUARIOS}/${id}.json`, usuario);
+  putUsuario(id: string, usuario: any): Observable<any> { 
+    return this.http.put(`${this.API_USUARIOS}/${id}`, usuario);
   }
 
-
-  deleteUsuario(id: string): Observable<any> {
-    return this.http.delete(`${this.API_FIRE_USUARIOS}/${id}.json`);
+  deleteUsuario(id: string): Observable<any> { 
+    return this.http.delete(`${this.API_USUARIOS}/${id}`);
   }
 
+  // ------------------- CRUD PRODUCTOS -------------------
+  postProducto(producto: any): Observable<any> {
+    return this.http.post(this.API_PRODUCTOS, producto);
+  }
 
-  // ------------------- CRUD para PRODUCTOS -------------------
+  getProductos(): Observable<any> {
+    return this.http.get(this.API_PRODUCTOS);
+  }
 
+  putProducto(id: string, producto: any): Observable<any> { 
+    return this.http.put(`${this.API_PRODUCTOS}/${id}`, producto);
+  }
 
-postProducto(producto: any): Observable<any> {
-  return this.http.post(`${this.API_FIRE_PRODUCTOS}.json`, producto);
-}
+  deleteProducto(id: string): Observable<any> {
+    return this.http.delete(`${this.API_PRODUCTOS}/${id}`);
+  }
 
+  // ------------------- CRUD FACTURAS -------------------
+  postFactura(factura: any): Observable<any> {
+    return this.http.post(this.API_FACTURAS, factura);
+  }
 
-getProductos(): Observable<any> {
-  return this.http.get(`${this.API_FIRE_PRODUCTOS}.json`);
-}
+  getFacturas(): Observable<any> {
+    return this.http.get(this.API_FACTURAS);
+  }
 
+  putFactura(id: string, factura: any): Observable<any> { 
+    return this.http.put(`${this.API_FACTURAS}/${id}`, factura);
+  }
 
-putProducto(id: string, producto: any): Observable<any> {
-  return this.http.patch(`${this.API_FIRE_PRODUCTOS}/${id}.json`, producto);
-}
-
-
-deleteProducto(id: string): Observable<any> {
-  return this.http.delete(`${this.API_FIRE_PRODUCTOS}/${id}.json`);
-}
-
-  // ------------------- Crear Factura -------------------
-postFactura(factura: any): Observable<any> {
-  return this.http.post(`${this.API_FIRE_FACTURAS}.json`, factura);
-}
-
-
-getFacturas(): Observable<any> {
-  return this.http.get(`${this.API_FIRE_FACTURAS}.json`);
-}
-
-
+  deleteFactura(id: string): Observable<any> { 
+    return this.http.delete(`${this.API_FACTURAS}/${id}`);
+  }
 }

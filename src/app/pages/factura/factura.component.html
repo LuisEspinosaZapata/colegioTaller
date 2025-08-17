@@ -5,9 +5,7 @@
   <select id="producto" [(ngModel)]="productoSeleccionadoId" class="input-select">
     <option value="">-- Seleccione un producto --</option>
     <option *ngFor="let producto of productos" [value]="producto.id">
-      {{ producto.nombre }} - ${{ producto.precio }} - 
-      <span *ngIf="producto.tieneIva; else noIva">Con IVA</span>
-      <ng-template #noIva>Sin IVA</ng-template>
+      {{ producto.nombre }} - ${{ producto.precio }} - {{ producto.tieneIva ? 'Con IVA' : 'Sin IVA' }}
     </option>
   </select>
 </div>
@@ -45,13 +43,7 @@
       <td>{{ item.producto.nombre }}</td>
       <td>{{ item.cantidad }}</td>
       <td>${{ item.subtotal | number: '1.2-2' }}</td>
-      <td>
-        <span
-          [class.iva-true]="item.iva > 0"
-          [class.iva-false]="item.iva === 0"
-          >${{ item.iva | number: '1.2-2' }}</span
-        >
-      </td>
+      <td>${{ item.iva | number: '1.2-2' }}</td>
       <td>${{ item.total | number: '1.2-2' }}</td>
       <td>
         <button class="btn btn-danger btn-sm" (click)="eliminarItem(i)">Eliminar</button>

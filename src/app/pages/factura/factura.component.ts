@@ -47,7 +47,12 @@ export class FacturaComponent implements OnInit {
   cargarProductos() {
     this.firebaseService.getProductos().subscribe(data => {
       if (data) {
-        this.productos = Object.keys(data).map(id => ({ id, ...data[id] }));
+        // Convierte data a array si es un objeto con IDs
+        if (!Array.isArray(data)) {
+          this.productos = Object.keys(data).map(id => ({ id, ...data[id] }));
+        } else {
+          this.productos = data;
+        }
       } else {
         this.productos = [];
       }
@@ -64,13 +69,15 @@ export class FacturaComponent implements OnInit {
       return;
     }
 
-    const prod = this.productos.find(p => p.id === this.productoSeleccionadoId);
+    // Encontrar producto (asegurando que sea string)
+    const prod = this.productos.find(p => p.id?.toString() === this.productoSeleccionadoId);
     if (!prod) return;
 
     const subtotal = prod.precio * this.cantidadSeleccionada;
     const iva = prod.tieneIva ? subtotal * 0.12 : 0;
     const total = subtotal + iva;
 
+    // Verificar si ya existe en la factura
     const index = this.itemsFactura.findIndex(item => item.producto.id === prod.id);
     if (index !== -1) {
       this.itemsFactura[index].cantidad += this.cantidadSeleccionada;
@@ -89,6 +96,7 @@ export class FacturaComponent implements OnInit {
 
     this.calcularTotales();
 
+    // Reset selección
     this.productoSeleccionadoId = '';
     this.cantidadSeleccionada = 1;
   }
